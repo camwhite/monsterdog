@@ -1,16 +1,21 @@
 {
-  "name": "rat",
+  "name": "react-skeleton",
   "version": "1.0.0",
-  "description": "",
+  "description": "A react webpack express socket.io starter",
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./server/server.js --ignore 'client/*'",
-    "build": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors",
     "lint": "node_modules/.bin/standard --parser babel-eslint --verbose | snazzy",
+    "build": "NODE_ENV=production webpack --config ./webpack.config.js --progress --colors"
   },
-  "author": "",
+  "author": "camwhite",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/camwhite/react-skeleton"
+  },
   "dependencies": {
+    "chalk": "^2.1.0",
     "eric-meyer-reset.scss": "^1.0.2",
     "express": "^4.15.4",
     "react": "^15.6.1",
