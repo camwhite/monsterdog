@@ -1,0 +1,258 @@
+/**
+ * Variables
+ */
+
+$primary-color: #333;
+$secondary-color: #FDE74C;
+$tertiary-color: white;
+$support-color: #F42C04;
+$accent-color: #256EFF;
+$warn-color: #DB5461;
+$success-color: #16DB93;
+
+$tablet: "max-width: 1024px";
+$mobile: "max-width: 776px";
+
+/**
+ * Mixins & Functions
+ */
+
+@function get-vw($target) {
+  $vw-context: (1000*.01) * 1px;
+  @return ($target/$vw-context) * 1vw;
+}
+
+@function get-vh($target) {
+  $vh-context: (1000*.01) * 1px;
+  @return ($target/$vh-context) * 1vh;
+}
+
+@mixin fade-stagger {
+  @for $i from 1 through 3 {
+    &:nth-child(#{$i}) {
+      animation: fade .4s .1s * $i infinite linear;
+    }
+  }
+}
+
+@mixin responsive-font($init, $scaled) {
+  font-size: $init;
+  @media screen and ($tablet) {
+    font-size: $scaled;
+  }
+}
+
+@mixin responsive-window($bg) {
+  position: relative;
+  height: 100vh;
+  background: $bg;
+}
+
+@mixin align-hack {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin randomizer($multiple, $lum) {
+  @for $i from 1 through 110 {
+    &:nth-child(#{$i}) {
+      background: hsl($multiple * $i, 100%, $lum);
+    }
+  }
+}
+
+@mixin vw($base-size, $break-size, $breakpoint) {
+  font-size: get-vw($base-size);
+  letter-spacing: -1px;
+  @media screen and ($breakpoint) {
+    font-size: $break-size;
+  }
+}
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+/**
+ * App-wide Styles
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  height: 90vh;
+  background: $tertiary-color;
+  color: $primary-color;
+  font-family: 'Raleway', Helvetica, sans-serif;
+  overflow: hidden;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+#app, .container {
+  height: 100%;
+}
+
+input, textarea {
+  font-family: 'Raleway', Helvetica, sans-serif;
+  background: $tertiary-color;
+  &::placeholder {
+    color: $support-color;
+    font-family: 'Raleway', Helvetica, sans-serif;
+    text-align: center;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Monsterrat', Helvetica, sans-serif;
+  font-weight: 700;
+  line-height: 1.25;
+  outline: none;
+}
+
+h1 {
+  font-size: get-vw(100px);
+}
+
+h2 {
+  font-size: get-vw(75px);
+}
+
+h3 {
+  @include vw(40px, 26px, $tablet);
+}
+
+h4 {
+  @include vw(29px, 22px, $tablet);
+}
+
+h5 {
+  @include vw(21px, 20px, $tablet);
+}
+
+h6 {
+  @include vw(14px, 13px, $tablet);
+}
+
+p, i, span, a, label, input, textarea {
+  @include responsive-font(16px, 12px);
+  line-height: 1.25;
+  color: $primary-color;
+}
+
+a {
+  color: $accent-color;
+  text-decoration: none;
+  font-weight: 400;
+  word-break: break-word;
+  &:hover {
+    color: darken($accent-color, 18%);
+  }
+}
+
+button {
+  @include responsive-font(14px, 14px);
+  margin: 8px 0;
+  padding: 24px 64px;
+  background: $accent-color;
+  border-radius: 2px;
+  color: white;
+  border: none;
+  outline: none;
+  font-weight: 200;
+  cursor: pointer;
+  box-sizing: border-box;
+  &[disabled] {
+    background: $support-color;
+  }
+  &:focus {
+    transform: scale(1.2);
+  }
+  @media screen and ($mobile) {
+    margin: get-vw(20px);
+    padding: get-vw(20px) get-vw(60px);
+  }
+}
+
+blockquote {
+  padding-left: 8px;
+  border-left: 4px solid $accent-color;
+  p {
+    color: $primary-color;
+  }
+}
+
+strong {
+  font-weight: 700;
+}
+
+em {
+  font-style: italic;
+}
+
+// Grid system
+.layout {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: baseline;
+  flex-flow: row wrap;
+  .grid_2 {
+    position: relative;
+    width: 10%;
+    align-self: center;
+    @media screen and (max-width: 758px) {
+      width: 40%;
+    }
+  }
+  .grid_3 {
+    width: 33.33%;
+    align-self: center;
+    @media screen and ($tablet) {
+      width: 50%;
+    }
+  }
+  .grid_4 {
+    width: 40%;
+    align-self: center;
+    @media screen and (max-width: 758px) {
+      width: 60%;
+    }
+  }
+  .grid_6 {
+    width: 50%;
+    align-self: center;
+    @media screen and (max-width: 758px) {
+      width: 100%;
+    }
+  }
+  .grid_8 {
+    width: 60%;
+    align-self: center;
+    @media screen and (max-width: 758px) {
+      width: 100%;
+    }
+  }
+  .grid_12 {
+    width: 100%;
+    align-self: center;
+  }
+}
+
+@import 'loading';
+@import 'nav';
+@import 'tracks';
+@import 'player';

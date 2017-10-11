@@ -1,0 +1,65 @@
+.track-list {
+  position: relative;
+  .track {
+    position: relative;
+    padding: 16px;
+    &.playing {
+      background: $success-color;
+      z-index: 100;
+      animation: fix 0.5s 0s linear forwards;
+      @media screen and ($mobile) {
+        width: 100%;
+      }
+      &:after {
+        content: 'NOW PLAYING';
+        position: absolute;
+        bottom: 0;
+        right: 8px;
+        padding: 16px 8px;
+        background: $success-color;
+        color: $tertiary-color;
+      }
+    }
+  }
+  .title {
+    display: flex;
+    cursor: pointer;
+    p {
+      align-self: center;
+      font-family: 'Montserrat';
+      font-weight: 700;
+    }
+    img {
+      width: 44px;
+      height: 44px;
+      margin-right: 8px;
+    }
+  }
+  .stats {
+    display: flex;
+    .stat {
+      padding: 8px 8px 0 0;
+    }
+    i {
+      margin-right: 8px;
+    }
+    .fa-play {
+      color: $secondary-color;
+    }
+    .fa-heart {
+      color: $warn-color;
+    }
+    .genre {
+      color: $accent-color;
+    }
+  }
+}
+
+@keyframes fix {
+  100% {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 40%;
+  }
+}

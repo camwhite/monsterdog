@@ -1,0 +1,28 @@
+.player {
+  .grid_8, .grid_3 {
+    align-self: flex-start;
+  }
+  .controls {
+    audio {
+      width: 100%;
+      background: $tertiary-color;
+    }
+  }
+  .track-list {
+    height: 90vh;
+    overflow-y: scroll;
+  }
+  .description {
+    padding: 16px;
+    p, span {
+      font-size: 13px;
+      letter-spacing: 1px;
+      line-height: 1.3;
+    }
+  }
+  @media screen and ($mobile) {
+    &.layout {
+      flex-direction: column-reverse;
+    }
+  }
+}

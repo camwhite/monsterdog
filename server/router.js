@@ -9,4 +9,6 @@ router.get(appRoutes, (req, res) => {
   res.sendFile(PATH_TO_INDEX)
 })
 
+require('./endpoints/sound')(router)
+
 module.exports = router

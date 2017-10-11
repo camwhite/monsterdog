@@ -1,0 +1,20 @@
+.preloader {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  align-self: center;
+  flex-flow: column wrap;
+  transform: translate(-50%, -50%);
+  img {
+    width: 15vw;
+    height: 15vw;
+    align-self: center;
+    animation: 1s dance infinite forwards;
+  }
+}
+
+@keyframes dance {
+  40% { transform: scale(1.4) rotate(17deg) }
+  70% { transform: scale(0.7) rotate(-27deg) }
+}
