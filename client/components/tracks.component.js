@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import InfiniteScroll from 'react-infinite-scroller'
 import { changeTrack, getSounds } from '../actions/sound.actions'
+import Loading from './loading.component'
 import smoothScroll from 'smoothscroll'
 
 class Tracks extends Component {
@@ -45,7 +46,7 @@ class Tracks extends Component {
           loadMore={this.loadMore}
           hasMore={!err || err.status !== 400}
           useWindow={false}
-          loader={<div className="loader">Loading ...</div>}
+          loader={<Loading />}
         >
           {sounds.map((track) => {
             return (<li id={track.id} key={track.id} className={playing && track.id === playing.id ? 'track playing' : 'track'}>
