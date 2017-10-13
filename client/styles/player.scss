@@ -3,9 +3,18 @@
     align-self: flex-start;
   }
   .controls {
+    display: flex;
+    flex-direction: column-reverse;
+    background: url('/assets/monstercat.png') no-repeat $primary-color center/cover;
     audio {
       width: 100%;
       background: $tertiary-color;
+    }
+    canvas {
+      width: 50%;
+      height: 60vh;
+      margin: 0 auto;
+      padding-top: 30vh;
     }
   }
   .track-list {

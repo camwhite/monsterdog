@@ -12,21 +12,20 @@ class SoundController {
     try {
       tracks = await fetchTracks()
     } catch (err) {
-      res.status(err.code).send(err)
+      return res.status(err.code).send(err)
     }
 
     res.json(_shuffle(tracks))
   }
 
-  // Get randomized tracks
+  // Search tracks
   static async query (req, res) {
     let tracks
 
     try {
       tracks = await queryTracks(req.query.term)
     } catch (err) {
-      console.log(err)
-      res.status(err.status).send(err)
+      return res.status(err.status).send(err)
     }
 
     res.json(tracks)

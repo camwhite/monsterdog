@@ -22,7 +22,7 @@ class Player extends Component {
   }
 
   render () {
-    const { sounds, isFetching } = this.props
+    const { sounds, results, isFetching } = this.props
     if (!sounds) {
       return <Loading />
     }
@@ -33,7 +33,9 @@ class Player extends Component {
           <Description />
         </div>
         <div className="grid_4">
-          <Tracks sounds={sounds} />
+          <Tracks sounds={sounds}
+                  results={results}
+          />
         </div>
       </div>
     )
@@ -41,16 +43,12 @@ class Player extends Component {
 }
 
 const mapStateToProps = (state) => {
-  let { sounds, isFetching } = state.soundsFetch
-  const { results } = state.soundsQuery
-
-  if (results) {
-    sounds = results
-    isFetching = state.soundsQuery.isFetching
-  }
+  let { sounds } = state.soundsFetch
+  const { results, isFetching } = state.soundsQuery
 
   return {
     sounds,
+    results,
     isFetching
   }
 }

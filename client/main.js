@@ -15,6 +15,7 @@ import Player from './containers/player.container'
 
 const store = configureStore()
 const socket = io.connect('', { 'transports': [ 'websocket', 'polling' ] })
+
 const MOUNT_NODE = document.getElementById('app')
 
 class App extends Component {

@@ -26,8 +26,11 @@ class Tracks extends Component {
   }
 
   loadMore = () => {
-    const { dispatch } = this.props
-    dispatch(getSounds())
+    const { dispatch, results } = this.props
+
+    if (!results) {
+      dispatch(getSounds())
+    }
   }
 
   onSelect = (track) => {
@@ -36,7 +39,8 @@ class Tracks extends Component {
   }
 
   render () {
-    const { sounds, playing, err } = this.props
+    const { sounds, results, playing, err } = this.props
+    const tracks = results || sounds
 
     return(
       <ul className='track-list'>
@@ -44,11 +48,11 @@ class Tracks extends Component {
           pageStart={0}
           initialLoad={false}
           loadMore={this.loadMore}
-          hasMore={!err || err.status !== 400}
+          hasMore={!results || err && err.status !== 400}
           useWindow={false}
           loader={<Loading />}
         >
-          {sounds.map((track) => {
+          {tracks.map((track) => {
             return (<li id={track.id} key={track.id} className={playing && track.id === playing.id ? 'track playing' : 'track'}>
               <div className="title" onClick={() => this.onSelect(track)}>
                 <img src={track.artwork_url} />

@@ -16,10 +16,15 @@ class Search extends Component {
   render () {
     return(
       <div className="search-field">
-        <i className="fa fa-search" onClick={() => this.search.focus()}></i>
+        <i className="fa fa-search"
+           onClick={() => this.search.focus()}
+        >
+        </i>
         <form name="search">
           <input type="search" ref={(search) => this.search = search} />
-          <button type="submit" hidden="true" onClick={(event) => this.onSubmit(event)}>
+          <button type="submit" hidden="true"
+                  onClick={(event) => this.onSubmit(event)}
+          >
           </button>
         </form>
       </div>
