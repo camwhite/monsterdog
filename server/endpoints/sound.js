@@ -1,7 +1,6 @@
 'use strict'
 
-const _shuffle = require('lodash/shuffle')
-const { fetchTracks, queryTracks } = require('../utils/sound.util')
+const SoundUtil = require('../utils/sound.util')
 
 class SoundController {
 
@@ -10,12 +9,12 @@ class SoundController {
     let tracks
 
     try {
-      tracks = await fetchTracks()
+      tracks = await SoundUtil.fetchTracks(req.query)
     } catch (err) {
-      return res.status(err.code).send(err)
+      return res.send(err.err_message)
     }
 
-    res.json(_shuffle(tracks))
+    res.json(tracks)
   }
 
   // Search tracks
@@ -23,7 +22,7 @@ class SoundController {
     let tracks
 
     try {
-      tracks = await queryTracks(req.query.term)
+      tracks = await SoundUtil.queryTracks(req.query.term)
     } catch (err) {
       return res.status(err.status).send(err)
     }

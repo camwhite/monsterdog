@@ -1,6 +1,7 @@
 'use strict'
 
 const Soundcloud = require('node-soundcloud')
+const _shuffle = require('lodash/shuffle')
 
 Soundcloud.init({
   id: '480c18c7ce22bbe09e989422102de2c8',
@@ -27,22 +28,43 @@ class SoundUtil {
   }
 
   // Fetch monstercat tracks
-  static fetchTracks () {
+  static async fetchTracks (query) {
+    let track
+    console.log(query)
+    if (query.track) {
+      track = await this.fetchTrack(query.track)
+    }
+
     return new Promise((resolve, reject) => {
       Soundcloud.get(uri, {
         limit: 100,
         linked_partitioning: 1
-      }, (err, { collection, next_href }) => {
+      }, (err, data) => {
         if (err) reject(err)
 
-        if (next_href) {
-          uri = next_href.replace('https://api.soundcloud.com', '')
+        data.collection = _shuffle(data.collection)
+        if (track) {
+          data.collection.unshift(track)
+        }
+
+        if (data.next_href) {
+          uri = data.next_href.replace('https://api.soundcloud.com', '')
         } else {
           uri = '/users/8553751/tracks'
           reject({ code: 400, message: 'Done!' })
         }
 
-        resolve(collection)
+        resolve(data.collection)
+      })
+    })
+  }
+
+  static fetchTrack (track) {
+    return new Promise((resolve, reject) => {
+      Soundcloud.get(`/tracks/${track}`, (err, track) => {
+        if (err) reject(err)
+
+        resolve(track)
       })
     })
   }

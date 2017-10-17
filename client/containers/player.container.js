@@ -31,6 +31,7 @@ class Player extends Component {
         <div className="grid_8">
           <Audio />
           <Description />
+          <div className="crowd"></div>
         </div>
         <div className="grid_4">
           <Tracks sounds={sounds}

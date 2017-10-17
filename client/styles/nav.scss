@@ -1,13 +1,14 @@
 nav {
   position: fixed;
   display: flex;
-  bottom: 0;
-  width: 100%;
+  top: 0;
+  width: 60%;
   height: 10vh;
   padding: 8px;
-  background: $primary-color;
-  justify-content: flex-end;
   z-index: 1000;
+  @media screen and ($mobile) {
+    display: none;
+  }
   .search-field {
     display: flex;
     width: 15%;
@@ -28,17 +29,20 @@ nav {
     }
   }
   .logo {
-    align-self: center;
-    width: 20%;
-    text-align: right;
     h4 {
+      width: 100%;
       letter-spacing: 1px;
       color: $tertiary-color;
+    }
+    img {
+      width: 44px;
+      height: 44px;
     }
     em {
       display: block;
       letter-spacing: 2px;
       color: $tertiary-color;
+      text-align: right;
     }
   }
 }

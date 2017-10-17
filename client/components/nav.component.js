@@ -5,11 +5,11 @@ import Search from './search.component'
 
 const Nav = () => (
   <nav className="nav-bar">
-    <Search />
     <div className="logo">
       <h4>monsterdog</h4>
-      <em>jukebox</em>
+      <em>the monstercat jukebox</em>
     </div>
+    <Search />
   </nav>
 )
 

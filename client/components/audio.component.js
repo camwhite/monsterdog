@@ -16,11 +16,11 @@ class Audio extends Component {
     this.analyser.fftSize = 32768
 
     // Canvas visualizer config
-    this.meterWidth = 10 //width of the meters in the spectrum
-    this.gap = 16 //gap between meters
+    this.meterWidth = 6 //width of the meters in the spectrum
+    this.gap = 2 //gap between meters
     this.capHeight = 2
     this.capStyle = '#333'
-    this.meterNum = 2000 / (10 + 2) //count of the meters
+    this.meterNum = 1000 / (8 + 2) //count of the meters
     this.capYPositionArray = [] //store the vertical position of the caps for the preivous frame
 
   }
@@ -49,7 +49,6 @@ class Audio extends Component {
 
     this.cwidth = canvas.width
     this.cheight = canvas.height
-
     this.ctx = canvas.getContext('2d')
 
     this.renderFrame()
@@ -68,13 +67,13 @@ class Audio extends Component {
       this.ctx.fillStyle = this.capStyle;
       //draw the cap, with transition effect
       if (value < this.capYPositionArray[i]) {
-        this.ctx.fillRect(i * 12, this.cheight - (--this.capYPositionArray[i]), this.meterWidth, this.capHeight);
+        this.ctx.fillRect(i * 8, this.cheight - (--this.capYPositionArray[i]), this.meterWidth, this.capHeight);
       } else {
-        this.ctx.fillRect(i * 12, this.cheight - value, this.meterWidth, this.capHeight);
+        this.ctx.fillRect(i * 8, this.cheight - value, this.meterWidth, this.capHeight);
         this.capYPositionArray[i] = value;
       };
       this.ctx.fillStyle = '#333'; //set the filllStyle to gradient for a better look
-      this.ctx.fillRect(i * 12 /*meterWidth+gap*/ , this.cheight - value + this.capHeight, this.meterWidth, this.cheight); //the meter
+      this.ctx.fillRect(i * 8 /*meterWidth+gap*/ , this.cheight - value + this.capHeight, this.meterWidth, this.cheight); //the meter
     }
     requestAnimationFrame(this.renderFrame)
   }

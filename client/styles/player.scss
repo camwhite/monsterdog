@@ -5,24 +5,37 @@
   .controls {
     display: flex;
     flex-direction: column-reverse;
-    background: url('/assets/monstercat.png') no-repeat $primary-color center/cover;
+    background: url('/assets/monstercat.png') no-repeat $primary-color center/130%;
+    z-index: 100;
+    @media screen and ($mobile) {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
     audio {
       width: 100%;
-      background: $tertiary-color;
     }
     canvas {
-      width: 50%;
+      width: 70%;
       height: 60vh;
       margin: 0 auto;
-      padding-top: 30vh;
+      @media screen and ($mobile) {
+        height: 20vh;
+      }
     }
   }
   .track-list {
-    height: 90vh;
+    height: 100vh;
     overflow-y: scroll;
   }
   .description {
+    height: 15vh;
     padding: 16px;
+    background: $tertiary-color;
+    @media screen and ($mobile) {
+      display: none;
+    }
     p, span {
       font-size: 13px;
       letter-spacing: 1px;

@@ -51,6 +51,13 @@ export const querySounds = (query) => (dispatch, getState) => {
 }
 
 export const changeTrack = (track) => (dispatch) => {
+  // Update the query string on new track
+  if (window.location.search) {
+    window.history.replaceState({} , 'monsterdog', window.location.href.replace(/\=\d+$/g, `=${track.id}`))
+  } else {
+    window.history.replaceState({} , 'monsterdog', window.location.href + `?track=${track.id}`)
+  }
+
   return dispatch({
     type: 'TRACK_CHANGE',
     track

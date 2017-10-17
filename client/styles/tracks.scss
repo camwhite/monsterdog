@@ -1,6 +1,9 @@
 .track-list {
   position: relative;
-  background: $support-color;
+  background: $tertiary-color;
+  @media screen and ($mobile) {
+    padding-bottom: calc(20vh + 32px);
+  }
   .track {
     position: relative;
     padding: 16px;
@@ -9,7 +12,7 @@
       z-index: 100;
       animation: fix 0.5s 0s linear forwards;
       @media screen and ($mobile) {
-        width: 100%;
+        animation: fix-mobile 0.5s 0s linear forwards;
       }
       &:after {
         content: 'NOW PLAYING';
@@ -19,6 +22,9 @@
         padding: 16px 8px;
         background: $success-color;
         color: $tertiary-color;
+        @media screen and ($mobile) {
+          font-size: 11px;
+        }
       }
     }
   }
@@ -62,5 +68,15 @@
     top: 0;
     right: 0;
     width: 40%;
+  }
+}
+
+@keyframes fix-mobile {
+  100% {
+    position: fixed;
+    top: 0;
+    right: auto;
+    left: 0;
+    width: 100%;
   }
 }
